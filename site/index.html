@@ -22,7 +22,7 @@
         <p class="eyebrow"><i></i> ANDROID 11+ <span>·</span> PHASE 1.1 / LOCAL DIAGNOSTICS</p>
         <h1>Know your<br><em>network state.</em></h1>
         <p class="lede">SignalWarden gives your connection a clear readout: what Android is connected to, which DNS servers and routes are active, and how long a user-triggered DNS, TCP, and verified HTTPS check takes.</p>
-        <div class="actions"><a class="button primary" href="https://github.com/cybercoretech/signalwarden">VIEW SOURCE <span>↗</span></a><a class="button" href="https://github.com/cybercoretech/signalwarden/issues">ISSUES + DISCUSSIONS <span>↗</span></a></div>
+        <div class="actions"><a class="button primary" href="https://github.com/cybercoretech/signalwarden">VIEW SOURCE <span>↗</span></a><button class="button" type="button" data-open-signal-dialog>EXPLORE THE SIGNAL PATH <span>↗</span></button></div>
         <p class="signal"><b>◈</b> OPEN SOURCE <span>—</span> ON-DEVICE RESULTS <span>—</span> NO TRACKING</p>
       </div>
       <div class="signal-panel" aria-label="Illustration of a network signal monitor">
@@ -31,6 +31,7 @@
         <div class="panel-readout"><div><small>TRANSPORT</small><b>WI-FI / VPN</b></div><div><small>DNS</small><b>ON DEMAND</b></div><div><small>HTTPS</small><b>VERIFIED</b></div></div>
         <div class="trace"><span>NETWORK PATH / 01</span><svg viewBox="0 0 560 68" role="img" aria-label="Decorative network path visualization"><path d="M0 34h100l18-20h120l18 20h76l18 19h110l20-19h80"/><path class="trace-pulse" d="M0 34h100l18-20h120l18 20h76l18 19h110l20-19h80"/><circle cx="0" cy="34" r="3"/><circle cx="560" cy="34" r="3"/></svg></div>
         <p class="panel-caption">DIAGNOSTICS STAY ON YOUR DEVICE</p>
+        <button class="panel-open" type="button" data-open-signal-dialog>OPEN SIGNAL TRACE <span>↗</span></button>
       </div>
     </section>
 
@@ -38,10 +39,10 @@
 
     <section class="section wrap" id="capabilities"><div class="section-head"><p class="eyebrow">01 / CURRENT CAPABILITIES</p><h2>Useful signal.<br><em>No mystery traffic.</em></h2><p>Phase 1.1 focuses on a small set of details Android already knows, plus an explicit connection check whose destination and behavior are documented.</p></div>
       <div class="feature-grid">
-        <article class="feature cyan"><span class="feature-index">01 / CONNECTION</span><div class="feature-icon">⌁</div><h3>See the active path.</h3><p>View transport, internet validation, metered status, and Android's VPN transport indicator. The screen refreshes when Android reports network changes.</p></article>
-        <article class="feature pink"><span class="feature-index">02 / LINK DETAILS</span><div class="feature-icon">⌘</div><h3>Inspect the essentials.</h3><p>Review interface name, device addresses, DNS servers, proxy configuration, and a short route summary exposed by Android.</p></article>
-        <article class="feature acid"><span class="feature-index">03 / ON-DEMAND TEST</span><div class="feature-icon">◉</div><h3>Measure each stage.</h3><p>When tapped, SignalWarden shows Android resolver-call, TCP-connect, and verified TLS times for <code>example.com:443</code>. Resolver timing may include cache; TCP tries at most two DNS answers with bounded timeouts.</p></article>
-        <article class="feature orange"><span class="feature-index">04 / SMALL PERMISSION SET</span><div class="feature-icon">⛨</div><h3>Keep the boundary clear.</h3><p>Phase 1.1 requests only Android's Internet and network-state permissions. No account, analytics, telemetry, ads, or app backend.</p></article>
+        <article class="feature cyan"><span class="feature-index">01 / CONNECTION</span><div class="feature-icon">⌁</div><h3>See the active path.</h3><p>View transport, internet validation, metered status, and Android's VPN transport indicator. The screen refreshes when Android reports network changes.</p><button class="feature-more" type="button" data-open-signal-dialog data-detail-title="Connection state" data-detail-text="SignalWarden reads Android's current active-network capabilities and link properties. It does not scan nearby devices or infer who owns the network.">INSPECT THIS SIGNAL <span>↗</span></button></article>
+        <article class="feature pink"><span class="feature-index">02 / LINK DETAILS</span><div class="feature-icon">⌘</div><h3>Inspect the essentials.</h3><p>Review interface name, device addresses, DNS servers, proxy configuration, and a short route summary exposed by Android.</p><button class="feature-more" type="button" data-open-signal-dialog data-detail-title="Link details" data-detail-text="Interface and address details are read from Android's network link properties and shown on the device. SignalWarden does not upload or retain this snapshot.">INSPECT THIS SIGNAL <span>↗</span></button></article>
+        <article class="feature acid"><span class="feature-index">03 / ON-DEMAND TEST</span><div class="feature-icon">◉</div><h3>Measure each stage.</h3><p>When tapped, SignalWarden shows Android resolver-call, TCP-connect, and verified TLS times for <code>example.com:443</code>. Resolver timing may include cache; TCP tries at most two DNS answers with bounded timeouts.</p><button class="feature-more" type="button" data-open-signal-dialog data-detail-title="On-demand test" data-detail-text="The probe runs only after you tap the test button in the Android app. It resolves example.com, attempts a bounded TCP connection to port 443, then verifies TLS for that hostname.">INSPECT THIS SIGNAL <span>↗</span></button></article>
+        <article class="feature orange"><span class="feature-index">04 / SMALL PERMISSION SET</span><div class="feature-icon">⛨</div><h3>Keep the boundary clear.</h3><p>Phase 1.1 requests only Android's Internet and network-state permissions. No account, analytics, telemetry, ads, or app backend.</p><button class="feature-more" type="button" data-open-signal-dialog data-detail-title="Permission boundary" data-detail-text="The current build requests Internet access for the user-triggered probe and network-state access to inspect Android's connection. It has no VPN service, packet capture, background scanner, analytics SDK, or SignalWarden server.">INSPECT THIS SIGNAL <span>↗</span></button></article>
       </div>
     </section>
 
@@ -55,6 +56,23 @@
 
     <section class="docs wrap"><p class="eyebrow">05 / PROJECT FILES</p><div class="doc-links"><a href="https://github.com/cybercoretech/signalwarden/blob/main/docs/ARCHITECTURE.md">🧱 ARCHITECTURE</a><a href="https://github.com/cybercoretech/signalwarden/blob/main/docs/PRIVACY.md">🕵️ PRIVACY</a><a href="https://github.com/cybercoretech/signalwarden/blob/main/SECURITY.md">🛡️ SECURITY</a><a href="https://github.com/cybercoretech/signalwarden/blob/main/docs/TESTING.md">🧪 TESTING</a><a href="https://github.com/cybercoretech/signalwarden/blob/main/docs/ROADMAP.md">🗺️ ROADMAP</a><a href="https://github.com/cybercoretech/signalwarden/blob/main/LICENSE">⚖️ APACHE-2.0</a></div></section>
   </main>
+  <dialog class="signal-dialog" id="signalDialog" aria-labelledby="dialogTitle">
+    <div class="dialog-frame">
+      <div class="dialog-top"><span><i></i> SIGNAL TRACE / PHASE 1.1</span><button class="dialog-close" type="button" aria-label="Close signal details">×</button></div>
+      <p class="eyebrow">ON-DEVICE DIAGNOSTICS</p>
+      <h2 id="dialogTitle">How the check runs.</h2>
+      <p class="dialog-context" id="dialogContext">This is an explainer, not a live scan. A test begins only when you tap the diagnostic button in SignalWarden.</p>
+      <div class="trace-flow" aria-label="Diagnostic stages: DNS resolution, TCP connection, verified TLS">
+        <article class="trace-step"><span class="step-port">01</span><span class="step-symbol">DNS</span><div><b>RESOLVE</b><small>example.com</small></div><i class="step-beacon"></i></article>
+        <span class="flow-link" aria-hidden="true"></span>
+        <article class="trace-step"><span class="step-port">02</span><span class="step-symbol">TCP</span><div><b>CONNECT</b><small>port 443</small></div><i class="step-beacon"></i></article>
+        <span class="flow-link" aria-hidden="true"></span>
+        <article class="trace-step"><span class="step-port">03</span><span class="step-symbol">TLS</span><div><b>VERIFY</b><small>hostname + cert</small></div><i class="step-beacon"></i></article>
+      </div>
+      <div class="dialog-foot"><span><b>LOCAL RESULT</b><small>Timings appear on your device; no result is sent to a SignalWarden server.</small></span><span class="dialog-lock" aria-hidden="true">⌑</span></div>
+      <a class="dialog-source" href="https://github.com/cybercoretech/signalwarden/blob/main/docs/PRIVACY.md">READ THE PROBE + PRIVACY DETAILS ↗</a>
+    </div>
+  </dialog>
   <footer><span>SIGNALWARDEN <b>·</b> NETWORK DIAGNOSTICS / PHASE 1.1</span><span>BUILT WITH ⚡ BY <a href="https://github.com/cybercoretech">CYBERCORE TECH</a></span></footer>
   <script src="app.js"></script>
 </body>
