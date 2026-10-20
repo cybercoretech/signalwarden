@@ -1,0 +1,17 @@
+{
+  "name": "SignalWarden",
+  "short_name": "SignalWarden",
+  "description": "On-device network diagnostics from Cybercore Tech.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#080d14",
+  "theme_color": "#080d14",
+  "icons": [
+    {
+      "src": "assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}
