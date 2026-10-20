@@ -2,7 +2,7 @@
 
 **Last reviewed:** 2026-10-19
 
-**Applies to:** current Phase 1.1 source in this repository (`0.1.0-dev`).
+**Applies to:** release v0.1.0 and the current Phase 1.1 source in this repository.
 
 SignalWarden is designed to keep its current diagnostic display local to the Android device. It has no SignalWarden server, user account, analytics, advertising SDK, or telemetry pipeline.
 
