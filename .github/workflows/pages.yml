@@ -36,6 +36,8 @@ jobs:
           node-version: 24
       - name: Check site JavaScript syntax
         run: node --check site/app.js
+      - name: Verify browser icon assets
+        run: node scripts/validate-site-assets.mjs
 
   deploy:
     if: github.event_name != 'pull_request'
