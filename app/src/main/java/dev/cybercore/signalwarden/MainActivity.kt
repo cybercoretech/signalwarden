@@ -133,7 +133,7 @@ private fun SignalWardenScreen() {
                 )
                 NetworkDetails(snapshot)
                 PrivacyNote()
-                Text("PHASE 1  /  LOCAL DIAGNOSTICS  /  NO CAPTURE", color = Muted, fontSize = 10.sp, letterSpacing = 1.5.sp, modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 2.dp, bottom = 8.dp))
+                Text("PHASE 1.1  /  LOCAL DIAGNOSTICS  /  NO CAPTURE", color = Muted, fontSize = 10.sp, letterSpacing = 1.5.sp, modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 2.dp, bottom = 8.dp))
             }
         }
     }
@@ -168,13 +168,14 @@ private fun StatusCard(snapshot: NetworkSnapshot) {
 private fun DiagnosticsCard(result: ProbeResult?, testing: Boolean, onRun: () -> Unit) {
     Card(colors = CardDefaults.cardColors(containerColor = Color(0xFF10222A)), shape = RoundedCornerShape(18.dp)) {
         Column(Modifier.fillMaxWidth().padding(18.dp), verticalArrangement = Arrangement.spacedBy(12.dp)) {
-            Text("CONNECTION TEST", color = Cyan, fontSize = 11.sp, letterSpacing = 1.8.sp, fontWeight = FontWeight.Bold)
-            Text("Check DNS and verified HTTPS reachability", fontWeight = FontWeight.SemiBold, fontSize = 17.sp)
-            Text("Uses example.com for a DNS lookup and a TLS handshake. No traffic is captured or saved.", color = Muted, fontSize = 13.sp, lineHeight = 19.sp)
+            Text("ON-DEMAND LATENCY + CONNECTION TEST", color = Cyan, fontSize = 11.sp, letterSpacing = 1.4.sp, fontWeight = FontWeight.Bold)
+            Text("Measure the path to example.com:443", fontWeight = FontWeight.SemiBold, fontSize = 17.sp)
+            Text("When you tap, SignalWarden measures the Android DNS resolver call (which may use cache), TCP connect, and verified TLS handshake. It uses the active Android network; results stay on this screen and are not saved.", color = Muted, fontSize = 13.sp, lineHeight = 19.sp)
             if (result != null) {
                 HorizontalDivider(color = Line)
-                CheckLine("DNS lookup", result.dnsOk, result.dnsMillis?.let { "${it} ms" } ?: "Failed")
-                CheckLine("Verified HTTPS", result.tlsOk, result.tlsMillis?.let { "${it} ms" } ?: if (result.dnsOk) "Failed" else "Not run")
+                CheckLine("DNS · ${result.resolvedAddressCount} answers", result.dnsOk, result.dnsMillis?.let { "${it} ms" } ?: "Failed")
+                CheckLine("TCP connect", result.tcpOk, result.tcpMillis?.let { "${it} ms" } ?: if (result.dnsOk) "Failed" else "Not run")
+                CheckLine("Verified TLS", result.tlsOk, result.tlsMillis?.let { "${it} ms" } ?: if (result.tcpOk) "Failed" else "Not run")
                 Text(result.detail, color = if (result.successful) Lime else Color(0xFFFFB45E), fontSize = 12.sp)
             }
             Button(
@@ -185,7 +186,7 @@ private fun DiagnosticsCard(result: ProbeResult?, testing: Boolean, onRun: () ->
                 shape = RoundedCornerShape(12.dp),
             ) {
                 if (testing) CircularProgressIndicator(modifier = Modifier.size(18.dp), strokeWidth = 2.dp, color = Ink)
-                else Text("Run connection test", fontWeight = FontWeight.Bold)
+                else Text("Run latency + connection test", fontWeight = FontWeight.Bold)
             }
         }
     }
@@ -216,7 +217,7 @@ private fun PrivacyNote() {
             androidx.compose.material3.Icon(Icons.Default.CheckCircle, contentDescription = null, tint = Lime, modifier = Modifier.size(21.dp))
             Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                 Text("Private by design", fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                Text("Phase 1 reads Android network state and runs a test only when you tap. It has no VPN service, account, analytics, or background capture.", color = Muted, fontSize = 12.sp, lineHeight = 18.sp)
+                Text("Phase 1.1 reads Android network state and runs a test only when you tap. It has no VPN service, account, analytics, or background capture.", color = Muted, fontSize = 12.sp, lineHeight = 18.sp)
             }
         }
     }

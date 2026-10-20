@@ -2,9 +2,9 @@
 
 **See what your connection is doing. Keep the diagnostics on your device.**
 
-SignalWarden is a Cybercore Android network diagnostics and privacy project. Its first phase gives you a readable view of the network Android is using and an explicit, on-demand check of DNS and certificate-verified HTTPS reachability. It is being built in small, inspectable steps, with privacy boundaries documented alongside the code.
+SignalWarden is a Cybercore Android network diagnostics and privacy project. Phase 1.1 gives you a readable view of the network Android is using and an explicit, on-demand latency breakdown for DNS, TCP, and certificate-verified HTTPS. It is being built in small, inspectable steps, with privacy boundaries documented alongside the code.
 
-> 🧭 **Current status:** Phase 1 prototype · Android 11+ · version `0.1.0-dev` · not yet a production VPN or packet analyzer.
+> 🧭 **Current status:** Phase 1.1 · Android 11+ · version `0.1.0-dev` · not a VPN or packet analyzer.
 
 🌐 **Project site:** [cybercoretech.github.io/signalwarden](https://cybercoretech.github.io/signalwarden/) · 🧰 **Source and issues:** [github.com/cybercoretech/signalwarden](https://github.com/cybercoretech/signalwarden)
 
@@ -12,13 +12,14 @@ SignalWarden is a Cybercore Android network diagnostics and privacy project. Its
 
 - 📡 Shows the active transport, Android's validated-internet status, metered status, and whether Android reports an active VPN transport.
 - 🧩 Displays the active interface, device addresses, DNS servers, proxy (if present), and a short route summary.
-- 🧪 Runs a DNS lookup for `example.com` and then a TLS connection to `example.com:443` only when you tap **Run connection test**. TLS certificate and hostname checks are enabled.
+- 🧪 On tap, measures Android's DNS resolver call, TCP connect, and certificate-verified TLS handshake time to `example.com:443`; resolver timing may include cached results, and TCP tries at most the first two DNS answers with bounded timeouts.
+- 🧫 Tests the probe's success, failure, timing, offline, and address-fallback behavior using deterministic local fakes.
 - 🔄 Refreshes the network snapshot when Android reports that the default network or its properties have changed.
 - 🛡️ Requests only `INTERNET` and `ACCESS_NETWORK_STATE`; it has no account, analytics, telemetry, advertising SDK, or SignalWarden server.
 
 ## 🔐 Privacy boundaries
 
-Network information can be sensitive. SignalWarden reads Android's active network properties so it can display them on your phone. The current prototype does not upload or retain a diagnostic history. Pressing the test button makes a DNS request for `example.com` and attempts a verified HTTPS handshake with that host over the active Android network. Your DNS resolver and `example.com` may therefore observe the ordinary connection metadata associated with those requests.
+Network information can be sensitive. SignalWarden reads Android's active network properties so it can display them on your phone. It does not upload or retain a diagnostic history. Pressing the test button asks Android to resolve `example.com`, then attempts a TCP connection and verified TLS handshake to port 443 using up to two returned addresses. Resolver duration may include an OS-cached result; it is not necessarily wire DNS latency. Your DNS resolver and `example.com` may observe ordinary connection metadata associated with requests.
 
 The app currently has **no `VpnService`, packet capture, traffic inspection, background scanning, kill switch, DNS filtering, or remote diagnostics API**. VPN protocol or packet inspection functionality would require a separately designed and reviewed phase; it is not implied by the current app name or roadmap.
 
@@ -31,7 +32,7 @@ Requirements: Android Studio or JDK 21, Android SDK 36, and an Android 11+ devic
 ```bash
 git clone https://github.com/cybercoretech/signalwarden.git
 cd signalwarden
-./gradlew :app:assembleDebug :app:lintDebug
+./gradlew :app:assembleDebug :app:lintDebug :app:testDebugUnitTest
 ```
 
 Install the development build on a connected device:
@@ -44,7 +45,7 @@ The debug application uses the package ID `dev.cybercore.signalwarden.debug`. Th
 
 ## 🗺️ Direction
 
-The roadmap separates safe diagnostics from higher-risk privacy controls. Next work can improve diagnostic clarity and add opt-in tests; any VPN, packet capture, or filtering capability needs an explicit design for consent, Android platform constraints, data minimization, and failure handling first. See [ROADMAP.md](docs/ROADMAP.md).
+Phase 1.1 adds stage-by-stage latency results and deterministic tests. Any VPN, packet capture, or filtering capability needs an explicit design for consent, Android platform constraints, data minimization, and failure handling first. See [ROADMAP.md](docs/ROADMAP.md).
 
 ## 📚 Project docs
 

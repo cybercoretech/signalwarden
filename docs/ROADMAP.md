@@ -8,9 +8,15 @@ SignalWarden is being developed in phases. Items below are direction, not claims
 - ✅ User-triggered DNS and verified HTTPS reachability check.
 - 🔄 Improve error explanations, accessibility, and automated coverage.
 
-## Phase 2 · Useful diagnostics
+## Phase 1.1 · Stronger diagnostics and test coverage
 
-- Consider opt-in latency, DNS comparison, and route diagnostics with clear destinations, timeouts, and on-device results.
+- ✅ Measure DNS lookup, TCP connect, and verified TLS handshake latency separately after an explicit user tap.
+- ✅ Bound TCP attempts to two DNS answers with per-address timeouts and clear stage-specific failures.
+- ✅ Add deterministic unit tests for successful probes, failure stages, offline state, timing, and address fallback.
+
+## Phase 2 · Broader diagnostics
+
+- Consider opt-in DNS comparison and route diagnostics with clear destinations, timeouts, and on-device results.
 - Add export only with a preview and redaction controls for addresses and network identifiers.
 - Document test traffic before each test so users can tell exactly what leaves the device.
 
