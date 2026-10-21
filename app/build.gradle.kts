@@ -4,6 +4,19 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
+val releaseStoreFile = System.getenv("SIGNALWARDEN_RELEASE_STORE_FILE")
+val releaseStorePassword = System.getenv("SIGNALWARDEN_RELEASE_STORE_PASSWORD")
+val releaseKeyAlias = System.getenv("SIGNALWARDEN_RELEASE_KEY_ALIAS")
+val releaseKeyPassword = System.getenv("SIGNALWARDEN_RELEASE_KEY_PASSWORD")
+val releaseSigningValues = listOf(releaseStoreFile, releaseStorePassword, releaseKeyAlias, releaseKeyPassword)
+val releaseSigningConfigured = releaseSigningValues.all { !it.isNullOrBlank() }
+// Release builds get these from tools/release.sh; plain builds stay "-dev".
+val signalwardenVersionCode = providers.gradleProperty("signalwardenVersionCode").orNull?.toIntOrNull() ?: 1
+val signalwardenVersionName = providers.gradleProperty("signalwardenVersionName").orNull ?: "0.1.0-dev"
+if (releaseSigningValues.any { !it.isNullOrBlank() } && !releaseSigningConfigured) {
+    throw GradleException("Release signing requires all SIGNALWARDEN_RELEASE_* environment variables.")
+}
+
 android {
     namespace = "dev.cybercore.signalwarden"
     compileSdk = 36
@@ -12,8 +25,19 @@ android {
         applicationId = "dev.cybercore.signalwarden"
         minSdk = 30
         targetSdk = 36
-        versionCode = 1
-        versionName = "0.1.0-dev"
+        versionCode = signalwardenVersionCode
+        versionName = signalwardenVersionName
+    }
+    signingConfigs {
+        if (releaseSigningConfigured) {
+            create("release") {
+                storeFile = file(releaseStoreFile!!)
+                storePassword = releaseStorePassword
+                keyAlias = releaseKeyAlias
+                keyPassword = releaseKeyPassword
+                storeType = "PKCS12"
+            }
+        }
     }
     buildTypes {
         debug { applicationIdSuffix = ".debug"; versionNameSuffix = "-debug" }
@@ -21,6 +45,7 @@ android {
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"))
+            if (releaseSigningConfigured) signingConfig = signingConfigs.getByName("release")
         }
     }
     compileOptions {

@@ -4,9 +4,20 @@
 
 SignalWarden is a Cybercore Android network diagnostics and privacy project. Phase 1.1 gives you a readable view of the network Android is using and an explicit, on-demand latency breakdown for DNS, TCP, and certificate-verified HTTPS. It is being built in small, inspectable steps, with privacy boundaries documented alongside the code.
 
-> 🧭 **Current status:** Phase 1.1 · Android 11+ · version `0.1.0-dev` · not a VPN or packet analyzer.
+> 🧭 **Current status:** Phase 1.1 · Android 11+ · release **v0.1.0** · not a VPN or packet analyzer.
 
 🌐 **Project site:** [cybercoretech.github.io/signalwarden](https://cybercoretech.github.io/signalwarden/) · 🧰 **Source and issues:** [github.com/cybercoretech/signalwarden](https://github.com/cybercoretech/signalwarden)
+
+## 📲 Install
+
+- 🤖 **F-Droid (auto-updates):** add the Cybercore repository at <https://cybercoretech.github.io/fdroid/>, then install *SignalWarden*.
+- 💻 **From a computer** (phone on USB, USB debugging on; it verifies the SHA-256 and the signing certificate first):
+  ```sh
+  curl -fsSL https://cybercoretech.github.io/signalwarden/install.sh | sh
+  ```
+- 📦 **Manual:** download `signalwarden.apk` from the [latest release](https://github.com/cybercoretech/signalwarden/releases/latest). Obtainium works with `https://github.com/cybercoretech/signalwarden`.
+
+🪪 Release signing certificate (SHA-256): `c8a7418085ee06271f46768ce2356e80834d1d85309f3d58cd8113f4f29679c6`. Releases are built and signed on the maintainer's machine with `tools/release.sh`; the key is never uploaded to GitHub. Local `assembleDebug` builds use the `.debug` package and install next to the release.
 
 ## ⚡ What works today
 

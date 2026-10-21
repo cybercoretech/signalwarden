@@ -1,8 +1,13 @@
 # 📜 Changelog
 
-User-visible changes are recorded here. This project has not published a production release yet.
+User-visible changes are recorded here.
 
-## Unreleased · `0.1.0-dev`
+## 0.1.0 · first signed release
+
+- 📦 First signed release APK, also in the Cybercore F-Droid repository; curl installer that verifies the SHA-256 and signing certificate.
+- 🛰️ Everything below (Phase 1.1).
+
+## Phase 1.1 (developed as `0.1.0-dev`)
 
 - 🛰️ Show active Android network transport, validation and metering state, VPN presence, interface, addresses, DNS servers, proxy, and a short route list.
 - 🧪 Add an explicit DNS lookup and certificate-verified TLS reachability check for `example.com`.
