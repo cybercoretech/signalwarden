@@ -12,12 +12,15 @@
   <link rel="apple-touch-icon" href="assets/apple-touch-icon.png?v=2" sizes="180x180">
   <link rel="manifest" href="site.webmanifest">
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cybercoretech.github.io/kit/chooser.css">
+  <script>window.SITE = Object.assign(window.SITE || {}, {"defaultTheme": "cybercore-tech"});</script>
+  <script type="module" src="https://cybercoretech.github.io/kit/chooser.js"></script>
 </head>
 <body>
   <header class="site-header">
     <a class="brand" href="#top" aria-label="SignalWarden home"><span class="brand-mark" aria-hidden="true">⌁</span><span>CYBERCORE <b>/</b> SIGNALWARDEN</span></a>
     <nav aria-label="Main navigation"><a href="#capabilities">CAPABILITIES</a><a href="#privacy">PRIVACY</a><a href="#install">INSTALL</a><a href="#build">BUILD</a><a data-cybercore-master-docs href="https://cybercoretech.github.io/cybercore/docs.html" style="color:#22e6ff;border:1px solid #263454;border-radius:999px;padding:7px 12px;text-decoration:none;font:600 .7rem ui-monospace,monospace;letter-spacing:.08em;white-space:nowrap">MASTER DOCS ↗</a></nav>
-    <div class="theme-picker"><span class="theme-label">CYBERGRID</span><button id="themeButton" type="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="themeMenu">LOADING THEMES…</button><div id="themeMenu" class="theme-menu" role="listbox" aria-label="Choose a Cybercore theme" hidden></div><select id="themeSelect" aria-label="Choose a Cybercore theme" tabindex="-1"></select></div>
+    <div class="theme-picker"><span class="theme-label">CYBERGRID</span><cybercore-theme-chooser adopt><button id="themeButton" type="button">Cybercore Tech</button></cybercore-theme-chooser></div>
   </header>
 
   <main id="top">
@@ -84,7 +87,7 @@
     <div style="width:min(1160px,calc(100% - 44px));margin-inline:auto"><cybercore-contact><a href="mailto:dev@cybercoretech.net">dev@cybercoretech.net</a></cybercore-contact></div>
   </section>
   <footer><span>SIGNALWARDEN <b>·</b> NETWORK DIAGNOSTICS / PHASE 1.1</span><span>BUILT WITH ⚡ BY <a href="https://github.com/cybercoretech">CYBERCORE TECH</a></span></footer>
-  <script src="app.js"></script>
+  <script src="app.js?v=universal-chooser-1"></script>
   <script type="module" src="https://cybercoretech.github.io/kit/contact.js"></script>
 </body>
 </html>
