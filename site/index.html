@@ -15,6 +15,144 @@
   <link rel="stylesheet" href="https://cybercoretech.github.io/kit/chooser.css">
   <script>window.SITE = Object.assign(window.SITE || {}, {"defaultTheme": "cybercore-tech"});</script>
   <script type="module" src="https://cybercoretech.github.io/kit/chooser.js"></script>
+  <style id="cc-mobile-first">
+/* Mobile floor (phones + tablets): readable text and finger-sized targets.
+   Generated per range from what renders under 11px / 24px; desktop untouched. */
+@media (max-width: 600px) {
+  p.eyebrow,
+  a.button,
+  button.button,
+  p.signal,
+  div.panel-top > span,
+  span.live,
+  small,
+  div > b,
+  div.trace > span,
+  p.panel-caption,
+  button.panel-open,
+  div.reveal-on-scroll > span,
+  div.reveal-on-scroll > b,
+  span.feature-index,
+  button.feature-more,
+  a.text-link,
+  div.privacy-card-head > span,
+  span.status-pill,
+  div.privacy-card > p,
+  article.reveal-on-scroll > span,
+  h3 > b,
+  article.reveal-on-scroll > div > p,
+  article.phase > span,
+  article.phase > div > p,
+  p.build-note,
+  div.terminal-head > span,
+  p.build-note > a,
+  button.copy-command,
+  div.doc-links > a,
+  footer > span,
+  span > a { font-size: 11px !important; }
+}
+@media (min-width: 601px) and (max-width: 860px) {
+  span.theme-label,
+  p.eyebrow,
+  a.button,
+  button.button,
+  p.signal,
+  div.panel-top > span,
+  span.live,
+  small,
+  div.panel-readout > div > b,
+  div.trace > span,
+  p.panel-caption,
+  button.panel-open,
+  div.reveal-on-scroll > span,
+  span.feature-index,
+  button.feature-more,
+  a.text-link,
+  div.privacy-card-head > span,
+  span.status-pill,
+  div.privacy-card > p,
+  article.reveal-on-scroll > span,
+  h3 > b,
+  article.reveal-on-scroll > div > p,
+  article.phase > span,
+  article.phase > div > p,
+  p.build-note,
+  div.terminal-head > span,
+  p.build-note > a,
+  button.copy-command,
+  div.doc-links > a,
+  footer > span,
+  span > a { font-size: 11px !important; }
+}
+@media (min-width: 861px) and (max-width: 1024px) {
+  span.theme-label,
+  p.eyebrow,
+  a.button,
+  button.button,
+  p.signal,
+  div.panel-top > span,
+  span.live,
+  small,
+  div.panel-readout > div > b,
+  div.trace > span,
+  p.panel-caption,
+  button.panel-open,
+  div.reveal-on-scroll > span,
+  span.feature-index,
+  button.feature-more,
+  a.text-link,
+  div.privacy-card-head > span,
+  span.status-pill,
+  div.privacy-card > p,
+  article.reveal-on-scroll > span,
+  h3 > b,
+  article.reveal-on-scroll > div > p,
+  article.phase > span,
+  article.phase > div > p,
+  p.build-note,
+  div.terminal-head > span,
+  p.build-note > a,
+  button.copy-command,
+  div.doc-links > a,
+  footer > span,
+  span > a { font-size: 11px !important; }
+}
+@media (pointer: coarse) {
+  a.text-link { min-height: 24px; min-width: 24px; }
+  span > a { display: inline-flex; align-items: center; min-height: 24px; min-width: 24px; }
+}
+/* Mobile floor (phones + tablets): readable text and finger-sized targets.
+   Generated per range from what renders under 11px / 24px; desktop untouched. */
+@media (max-width: 600px) {
+  a.brand > span:not([aria-hidden]) { font-size: 11px !important; }
+}
+@media (min-width: 861px) and (max-width: 1024px) {
+  nav > a:not([data-cybercore-master-docs]) { font-size: 11px !important; }
+}
+/* Mobile floor (phones + tablets): readable text and finger-sized targets.
+   Generated per range from what renders under 11px / 24px; desktop untouched. */
+@media (max-width: 600px) {
+  pre > code { font-size: 11px !important; }
+}
+@media (min-width: 601px) and (max-width: 860px) {
+  pre > code { font-size: 11px !important; }
+}
+@media (min-width: 861px) and (max-width: 1024px) {
+  pre > code { font-size: 11px !important; }
+}
+/* Layout fixes: phones and tablets only; laptops and desktops untouched. */
+@media (max-width: 1024px) {
+  /* Mobile first: nothing may make the page wider than the screen.
+     Grid/flex columns may shrink below their widest line; code scrolls in place. */
+  pre { max-width: 100%; overflow-x: auto; }
+  img, video { max-width: 100%; height: auto; }
+  div.wrap > * { min-width: 0; }
+  div.terminal-head > * { min-width: 0; }
+  pre { max-width: 100%; overflow-x: auto; }
+  /* Long paths and URLs in inline code may break anywhere instead of widening the page. */
+  :not(pre) > code { overflow-wrap: anywhere; }
+}
+  </style>
 </head>
 <body>
   <header class="site-header">
